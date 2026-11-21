@@ -110,10 +110,13 @@ button{font:inherit}
 .seal-wrap{position:absolute;left:50%;top:50%;z-index:6;width:clamp(150px,44vw,210px);aspect-ratio:1;transform:translate(-50%,-50%)}
 #seal{position:absolute;inset:0;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;animation:beat 2.6s ease-in-out infinite}
 @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.half{position:absolute;inset:0;will-change:transform,opacity;filter:drop-shadow(0 14px 22px rgba(0,0,0,.6))}
+.half{position:absolute;inset:0;will-change:transform,opacity}
 .half svg{width:100%;height:100%;display:block}
-.half.a{clip-path:polygon(0 0,56% 0,45% 24%,59% 48%,44% 74%,53% 100%,0 100%)}
-.half.b{clip-path:polygon(56% 0,100% 0,100% 100%,53% 100%,44% 74%,59% 48%,45% 24%)}
+.seal-wrap{filter:drop-shadow(0 14px 22px rgba(0,0,0,.6))}
+.half.a,.half.b{clip-path:none}
+.half.b{visibility:hidden}
+#gate.cracking .half.a{clip-path:polygon(0 0,56% 0,45% 24%,59% 48%,44% 74%,53% 100%,0 100%)}
+#gate.cracking .half.b{visibility:visible;clip-path:polygon(56% 0,100% 0,100% 100%,53% 100%,44% 74%,59% 48%,45% 24%)}
 .gate-copy{position:absolute;left:0;right:0;bottom:11svh;z-index:6;text-align:center;padding:0 24px;transition:opacity .6s ease}
 .gate-copy .script{font-family:'Great Vibes',cursive;font-size:clamp(38px,11vw,58px);color:var(--gold-l);line-height:1}
 .gate-copy .eyebrow{display:block;margin-top:10px;animation:pulse 2.4s ease-in-out infinite}
@@ -318,17 +321,41 @@ input:focus,select:focus,textarea:focus{border-color:var(--gold-d);box-shadow:0 
       </g>
     </symbol>
     <symbol id="sealart" viewBox="0 0 200 200">
-      <path d="M100 6c18 0 26 12 42 14s30 10 30 28 12 26 14 42-8 24-10 40-14 26-28 34-24 18-42 20-30-6-44-14-28-14-34-30-14-28-10-44 4-26 14-40 22-18 34-26 26-24 34-24z" fill="url(#wax)"/>
-      <circle cx="100" cy="102" r="70" fill="none" stroke="#f6a8b0" stroke-opacity=".55" stroke-width="2.5"/>
-      <circle cx="100" cy="102" r="62" fill="none" stroke="#2a050b" stroke-opacity=".5" stroke-width="1.5"/>
-      <g fill="#f6dd93" fill-opacity=".92" font-family="Cinzel,serif" text-anchor="middle">
-        <text x="100" y="116" font-size="52" font-weight="700" letter-spacing="2">P</text>
+      <defs>
+        <filter id="sealBlur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+        <radialGradient id="waxRim" cx=".5" cy=".5" r=".5">
+          <stop offset=".78" stop-color="#000" stop-opacity="0"/>
+          <stop offset="1" stop-color="#2a050b" stop-opacity=".55"/>
+        </radialGradient>
+      </defs>
+
+      <path d="M186.4 102.0 L187.0 106.6 L186.5 111.1 L184.7 115.4 L182.1 119.5 L179.3 123.2 L176.8 126.9 L175.0 130.8 L173.8 134.9 L172.9 139.2 L171.8 143.5 L170.0 147.5 L167.4 151.0 L164.0 153.8 L160.1 156.1 L156.2 158.2 L152.6 160.4 L149.4 163.0 L146.3 165.8 L143.3 168.7 L140.0 171.4 L136.5 173.7 L132.8 175.7 L129.0 177.5 L125.2 179.6 L121.4 182.0 L117.6 184.8 L113.6 187.6 L109.2 189.8 L104.7 190.8 L100.0 190.2 L95.5 188.3 L91.2 185.3 L87.3 182.0 L83.6 179.0 L79.9 176.9 L76.1 175.5 L72.1 174.7 L68.0 173.9 L63.9 172.8 L60.0 171.2 L56.4 169.2 L52.8 166.9 L49.2 164.7 L45.4 162.6 L41.5 160.5 L37.6 158.2 L34.1 155.4 L31.3 151.9 L29.3 147.9 L28.0 143.6 L26.9 139.3 L25.6 135.1 L23.7 131.3 L21.3 127.6 L18.7 123.8 L16.4 119.8 L15.1 115.4 L15.0 110.9 L16.2 106.4 L18.2 102.0 L20.5 97.8 L22.4 93.8 L23.8 89.9 L24.5 85.9 L24.9 81.9 L25.4 77.7 L26.1 73.6 L27.2 69.6 L28.5 65.6 L29.8 61.5 L30.8 57.1 L31.8 52.5 L32.9 47.7 L34.7 43.2 L37.3 39.3 L41.0 36.5 L45.5 34.8 L50.5 33.9 L55.5 33.5 L60.1 32.9 L64.2 31.8 L67.9 30.0 L71.5 27.7 L75.1 25.4 L79.0 23.6 L83.1 22.5 L87.3 22.1 L91.6 22.1 L95.8 22.2 L100.0 22.1 L104.2 21.7 L108.5 21.2 L112.8 21.0 L117.1 21.4 L121.3 22.5 L125.3 24.1 L129.2 25.8 L133.2 27.3 L137.5 28.4 L142.1 29.2 L146.8 30.0 L151.3 31.3 L155.3 33.7 L158.4 37.2 L160.4 41.6 L161.6 46.6 L162.3 51.5 L163.2 56.1 L164.5 60.1 L166.4 63.7 L168.8 67.0 L171.2 70.3 L173.5 73.8 L175.5 77.5 L177.1 81.3 L178.8 85.3 L180.6 89.2 L182.7 93.3 L184.7 97.6Z" fill="url(#wax)"/>
+      <path d="M186.4 102.0 L187.0 106.6 L186.5 111.1 L184.7 115.4 L182.1 119.5 L179.3 123.2 L176.8 126.9 L175.0 130.8 L173.8 134.9 L172.9 139.2 L171.8 143.5 L170.0 147.5 L167.4 151.0 L164.0 153.8 L160.1 156.1 L156.2 158.2 L152.6 160.4 L149.4 163.0 L146.3 165.8 L143.3 168.7 L140.0 171.4 L136.5 173.7 L132.8 175.7 L129.0 177.5 L125.2 179.6 L121.4 182.0 L117.6 184.8 L113.6 187.6 L109.2 189.8 L104.7 190.8 L100.0 190.2 L95.5 188.3 L91.2 185.3 L87.3 182.0 L83.6 179.0 L79.9 176.9 L76.1 175.5 L72.1 174.7 L68.0 173.9 L63.9 172.8 L60.0 171.2 L56.4 169.2 L52.8 166.9 L49.2 164.7 L45.4 162.6 L41.5 160.5 L37.6 158.2 L34.1 155.4 L31.3 151.9 L29.3 147.9 L28.0 143.6 L26.9 139.3 L25.6 135.1 L23.7 131.3 L21.3 127.6 L18.7 123.8 L16.4 119.8 L15.1 115.4 L15.0 110.9 L16.2 106.4 L18.2 102.0 L20.5 97.8 L22.4 93.8 L23.8 89.9 L24.5 85.9 L24.9 81.9 L25.4 77.7 L26.1 73.6 L27.2 69.6 L28.5 65.6 L29.8 61.5 L30.8 57.1 L31.8 52.5 L32.9 47.7 L34.7 43.2 L37.3 39.3 L41.0 36.5 L45.5 34.8 L50.5 33.9 L55.5 33.5 L60.1 32.9 L64.2 31.8 L67.9 30.0 L71.5 27.7 L75.1 25.4 L79.0 23.6 L83.1 22.5 L87.3 22.1 L91.6 22.1 L95.8 22.2 L100.0 22.1 L104.2 21.7 L108.5 21.2 L112.8 21.0 L117.1 21.4 L121.3 22.5 L125.3 24.1 L129.2 25.8 L133.2 27.3 L137.5 28.4 L142.1 29.2 L146.8 30.0 L151.3 31.3 L155.3 33.7 L158.4 37.2 L160.4 41.6 L161.6 46.6 L162.3 51.5 L163.2 56.1 L164.5 60.1 L166.4 63.7 L168.8 67.0 L171.2 70.3 L173.5 73.8 L175.5 77.5 L177.1 81.3 L178.8 85.3 L180.6 89.2 L182.7 93.3 L184.7 97.6Z" fill="url(#waxRim)"/>
+
+      <ellipse cx="74" cy="62" rx="40" ry="20" fill="#ffd0d6" opacity=".28" filter="url(#sealBlur)"/>
+
+      <circle cx="100" cy="102" r="64" fill="none" stroke="#2a050b" stroke-opacity=".45" stroke-width="3" transform="translate(1.2 1.6)"/>
+      <circle cx="100" cy="102" r="64" fill="none" stroke="#f6a8b0" stroke-opacity=".5" stroke-width="2"/>
+      <circle cx="100" cy="102" r="56" fill="none" stroke="#f6dd93" stroke-opacity=".55" stroke-width="1"/>
+
+      <path d="M100 56l5 6-5 6-5-6z" fill="#f6dd93" fill-opacity=".95"/>
+      <path d="M72 62h16M112 62h16" stroke="#f6dd93" stroke-opacity=".7" stroke-width="1.2" stroke-linecap="round"/>
+
+      <g font-family="Cinzel, serif" font-weight="700" text-anchor="middle">
+        <g fill="#2a050b" fill-opacity=".6" transform="translate(1.4 1.6)">
+          <text x="66" y="124" font-size="46">P</text>
+          <text x="100" y="121" font-size="24">&amp;</text>
+          <text x="134" y="124" font-size="46">K</text>
+        </g>
+        <g fill="#f6dd93">
+          <text x="66" y="124" font-size="46">P</text>
+          <text x="100" y="121" font-size="24">&amp;</text>
+          <text x="134" y="124" font-size="46">K</text>
+        </g>
       </g>
-      <g stroke="#f6dd93" stroke-opacity=".9" fill="none" stroke-width="2.2">
-        <path d="M100 150c-14-10-22-18-22-27a12 12 0 0 1 22-6 12 12 0 0 1 22 6c0 9-8 17-22 27z" transform="translate(0 -4) scale(.55) translate(82 66)"/>
-      </g>
-      <text x="100" y="152" font-family="Cinzel,serif" font-size="30" font-weight="700" fill="#f6dd93" fill-opacity=".92" text-anchor="middle">&amp; K</text>
-      <path d="M52 66c14-24 40-34 70-26" stroke="#fff" stroke-opacity=".28" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+      <path d="M76 142h48" stroke="#f6dd93" stroke-opacity=".7" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="100" cy="148" r="2.2" fill="#f6dd93" fill-opacity=".9"/>
     </symbol>
   </defs>
 </svg>
